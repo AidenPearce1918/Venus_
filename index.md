@@ -10,12 +10,6 @@
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <!-- AR scene -->
-    <a-scene embedded arjs>
-        <!-- AR content will go here -->
-    </a-scene>
-    <a-marker preset="Hiro_marker_ARjs">
-        <a-entity gltf-model="models/solar_system_animation.glb"></a-entity>
-    </a-marker>
+    <p> Hello from Aiden </p>
 </body>
 </html>
