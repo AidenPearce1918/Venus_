@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
-title: Aiden's homepage
-basename: index.html
-description: Bookmark this to keep an eye on my project updates!
+title: My Awesome Site
+description: A simple site hosted on GitHub Pages.
+baseurl: ""
+url: "https://aidenpearce1918.github.io/"
