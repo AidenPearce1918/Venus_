@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title> Test </title>
+    <p> Test </p>
 </head>
 <body style="margin: 0; overflow: hidden;">
     <p> Hello from Aiden </p>
