@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Space-Themed AR</title>
-    <!-- Import A-Frame -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <!-- Import AR.js -->
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Image Recognition with 3D Model Trigger</title>
+  <!-- MindAR library -->
+  <script src="https://cdn.jsdelivr.net/npm/@mind-ar-js/aframe@1.2.3/dist/aframe-mindar.js"></script>
+  <!-- Three.js library for rendering 3D models -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <!-- AR scene -->
-    <a-scene embedded arjs>
-        <!-- AR content will go here -->
-    </a-scene>
-    <a-scene embedded arjs>
-        <!-- AR marker for Earth -->
-        <a-marker preset="hiro">
-            <!-- Earth model will be loaded here -->
-        </a-marker>
-        <!-- AR camera to view the scene -->
-        <a-entity camera></a-entity>
-    </a-scene>
-    <a-scene embedded arjs>
-        <a-marker preset="hiro">
-            <!-- Load the Earth model -->
-            <a-entity gltf-model="models/solar_system_animation.glb" scale="1 1 1" position="0 0.5 0"></a-entity>
-        </a-marker>
-        <a-entity camera></a-entity>
-    </a-scene>
-    <a-marker preset="./Hiro_marker_ARjs.png">
-        <a-entity gltf-model="./models/solar_system_animation.glb"></a-entity>
-    </a-marker>
+  <!-- AR.js scene setup -->
+  <a-scene mindar-image="imageTargetSrc: ./assets/targets.mind;" embedded color-space="sRGB" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
     
-        
+    <!-- Camera setup for AR scene -->
+    <a-camera position="0 0 0"></a-camera>
+    
+    <!-- Entity that will load the 3D model -->
+    <a-entity id="3d-model" gltf-model="url('./solar_system_animation.glb')" position="0 0 0" scale="0 0 0" rotation="0 0 0"></a-entity>
+
+    <!-- Target image trigger -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-entity position="0 0 0">
+        <!-- Display the 3D model when the image is detected -->
+        <a-entity id="model-container" position="0 0 -2" scale="1 1 1" visible="false">
+          <a-entity gltf-model="url('./models/solar_system_animation.glb')"></a-entity>
+        </a-entity>
+      </a-entity>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    AFRAME.registerComponent("show-on-detect", {
+      init: function () {
+        // Reference to the model and scene
+        const modelContainer = document.querySelector("#model-container");
+
+        // Listen for the image detection event
+        this.el.addEventListener("targetFound", (e) => {
+          modelContainer.setAttribute("visible", true);
+          console.log("Image detected, displaying 3D model");
+        });
+
+        // Hide the model when image target is lost
+        this.el.addEventListener("targetLost", (e) => {
+          modelContainer.setAttribute("visible", false);
+          console.log("Image lost, hiding 3D model");
+        });
+      },
+    });
+  </script>
 </body>
 </html>
