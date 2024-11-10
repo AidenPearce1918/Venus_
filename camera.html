@@ -2,57 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Camera for AR</title>
-    <style>
-        /* Ensures full-screen camera view */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-        }
-
-        #camera {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Optionally add a loading screen or any instructions */
-        .loading-text {
-            color: white;
-            position: absolute;
-            font-size: 20px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space-Themed AR</title>
+    <!-- Import A-Frame -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <!-- Import AR.js -->
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
 </head>
-<body>
-
-    <div class="loading-text">Scanning... Please wait</div>
-    <video id="camera" autoplay></video>
-
-    <script>
-        // Simple camera access using WebRTC
-        const camera = document.getElementById('camera');
-
-        // Access the camera and set the video stream
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-            .then(stream => {
-                camera.srcObject = stream;
-            })
-            .catch(error => {
-                console.error("Error accessing the camera: ", error);
-                alert("Unable to access camera.");
-            });
-    </script>
-
+<body style="margin: 0; overflow: hidden;">
+    <!-- AR scene -->
+    <a-scene embedded arjs>
+        <!-- AR content will go here -->
+    </a-scene>
+    <a-scene embedded arjs>
+        <!-- AR marker for Earth -->
+        <a-marker preset="hiro">
+            <!-- Earth model will be loaded here -->
+        </a-marker>
+        <!-- AR camera to view the scene -->
+        <a-entity camera></a-entity>
+    </a-scene>
+    <a-scene embedded arjs>
+        <a-marker preset="hiro">
+            <!-- Load the Earth model -->
+            <a-entity gltf-model="models/solar_system_animation.glb" scale="1 1 1" position="0 0.5 0"></a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+    <a-marker preset="./Hiro_marker_ARjs.png">
+        <a-entity gltf-model="./models/solar_system_animation.glb"></a-entity>
+    </a-marker>
+    
+        
 </body>
 </html>
