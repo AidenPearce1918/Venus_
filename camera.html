@@ -2,43 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Camera</title>
-
-    <!-- Include AR.js Library -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
-
-    <!-- Include 3D Model loader (GLTF format) -->
-    <script src="https://cdn.jsdelivr.net/npm/aframe@1.2.0/dist/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-gltf-model-component/dist/aframe-gltf-model-component.min.js"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Camera for AR</title>
     <style>
-        body {
+        /* Ensures full-screen camera view */
+        body, html {
             margin: 0;
+            padding: 0;
+            height: 100%;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: black;
         }
-        #scene {
+
+        #camera {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+        }
+
+        /* Optionally add a loading screen or any instructions */
+        .loading-text {
+            color: white;
+            position: absolute;
+            font-size: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
 
-    <!-- A-Frame AR scene -->
-    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam;">
+    <div class="loading-text">Scanning... Please wait</div>
+    <video id="camera" autoplay></video>
 
-        <!-- Define the marker (image recognition) -->
-        <a-marker preset="hiro">
-            <a-entity gltf-model="url(https://example.com/3d-model.glb)" scale="0.5 0.5 0.5" position="0 0 0"></a-entity>
-        </a-marker>
+    <script>
+        // Simple camera access using WebRTC
+        const camera = document.getElementById('camera');
 
-        <!-- Camera and lights -->
-        <a-camera></a-camera>
-
-    </a-scene>
+        // Access the camera and set the video stream
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+            .then(stream => {
+                camera.srcObject = stream;
+            })
+            .catch(error => {
+                console.error("Error accessing the camera: ", error);
+                alert("Unable to access camera.");
+            });
+    </script>
 
 </body>
 </html>
