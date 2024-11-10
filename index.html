@@ -75,13 +75,6 @@
         .star:nth-child(19) { width: 2px; height: 2px; top: 90%; left: 30%; animation-delay: -4s; }
         .star:nth-child(20) { width: 3px; height: 3px; top: 10%; left: 80%; animation-delay: -2s; }
 
-        /* More stars to add density */
-        .star:nth-child(21) { width: 2px; height: 2px; top: 25%; left: 20%; animation-delay: -3s; }
-        .star:nth-child(22) { width: 3px; height: 3px; top: 60%; left: 75%; animation-delay: -5s; }
-        .star:nth-child(23) { width: 1px; height: 1px; top: 45%; left: 10%; animation-delay: -6s; }
-        .star:nth-child(24) { width: 2px; height: 2px; top: 5%; left: 80%; animation-delay: -7s; }
-        .star:nth-child(25) { width: 3px; height: 3px; top: 80%; left: 60%; animation-delay: -4s; }
-
         /* Animations for stars */
         @keyframes twinkle {
             0% { opacity: 0.5; }
@@ -166,7 +159,7 @@
         /* "Get Started" button at the bottom */
         .get-started {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             padding: 15px 30px;
@@ -177,7 +170,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: background 0.3s;
-            z-index: 2;
+            z-index: 10; /* Ensures button is on top of all elements */
         }
 
         .get-started:hover {
@@ -209,49 +202,28 @@
         <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <!-- Additional stars for a denser star field -->
     </div>
-    
+
     <div class="loading-container">
-        <!-- Space Elements -->
+        <!-- Nebula, Planets, Satellite, Astronaut, and Loading Text -->
         <div class="planet planet1"></div>
         <div class="planet planet2"></div>
         <div class="nebula"></div>
-
-        <!-- Satellite element (SVG from Freepik) -->
         <div class="satellite">
             <img src="https://image.freepik.com/free-icon/satellite_318-829.jpg" alt="Satellite">
         </div>
-
-        <!-- Astronaut element (SVG from Freepik) -->
         <div class="astronaut">
             <img src="https://image.freepik.com/free-icon/astronaut_318-830.jpg" alt="Astronaut">
         </div>
-
-        <!-- Loading Text -->
         <h1>Welcome to the Cosmos</h1>
         <p>Your journey into the unknown begins here</p>
     </div>
 
-<!-- "Get Started" button -->
     <button class="get-started" onclick="startJourney()">Get Started</button>
 
     <script>
         function startJourney() {
-            // Redirect to the new page with camera functionality
-            window.location.href = "camera.html";
+            window.location.href = "camera.html";  // Redirect to the camera and AR page
         }
     </script>
 
