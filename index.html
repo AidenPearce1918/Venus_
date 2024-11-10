@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Themed Loading Page</title>
     <style>
-        /* Reset margin and padding */
+        /* Basic reset and setup */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        /* Set the background color and style */
+        
         body, html {
             height: 100%;
             overflow: hidden;
@@ -34,7 +33,7 @@
             z-index: 10;
         }
 
-        /* Star animation */
+        /* Animated background with stars */
         .stars {
             width: 100%;
             height: 100%;
@@ -45,14 +44,51 @@
             animation: star-animation 100s linear infinite;
         }
 
-        /* Floating planet */
+        /* Adding planets with different colors */
         .planet {
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle at 50% 50%, #b0bec5, #455a64);
+            position: absolute;
             border-radius: 50%;
-            position: relative;
-            animation: planet-float 5s ease-in-out infinite;
+            animation: float 5s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        .planet1 {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 50% 50%, #ff7043, #bf360c);
+            top: 20%;
+            left: 15%;
+            animation-duration: 6s;
+        }
+        
+        .planet2 {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 50% 50%, #4fc3f7, #0277bd);
+            top: 50%;
+            right: 20%;
+            animation-duration: 7s;
+        }
+
+        .satellite {
+            width: 60px;
+            height: 60px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Satellite_icon.svg/1200px-Satellite_icon.svg.png') no-repeat center/contain;
+            position: absolute;
+            top: 70%;
+            left: 10%;
+            animation: orbit 8s linear infinite;
+            z-index: 2;
+        }
+
+        .astronaut {
+            width: 80px;
+            height: 80px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/6/6a/Astronaut_icon.png') no-repeat center/contain;
+            position: absolute;
+            bottom: 15%;
+            right: 15%;
+            animation: float 4s ease-in-out infinite;
             z-index: 2;
         }
 
@@ -74,15 +110,20 @@
             background: #0288d1;
         }
 
-        /* Animations */
+        /* Keyframes for animations */
         @keyframes star-animation {
             from { transform: translateY(0); }
             to { transform: translateY(-1000px); }
         }
 
-        @keyframes planet-float {
+        @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
         }
     </style>
 </head>
@@ -91,16 +132,22 @@
     <div class="stars"></div>
     
     <div class="loading-container">
-        <div class="planet"></div>
-        <h1>Welcome to the Space</h1>
-        <p>Your journey begins here</p>
+        <!-- Space Elements -->
+        <div class="planet planet1"></div>
+        <div class="planet planet2"></div>
+        <div class="satellite"></div>
+        <div class="astronaut"></div>
+
+        <!-- Loading Text and Button -->
+        <h1>Welcome to the Cosmos</h1>
+        <p>Your journey into the unknown begins here</p>
         <button class="get-started" onclick="startJourney()">Get Started</button>
     </div>
 
     <script>
         function startJourney() {
-            alert('Starting your space adventure!');
-            // Redirect to another page or load content here if needed
+            alert('Launching your space adventure!');
+            // You can redirect to another page here if needed
         }
     </script>
 
