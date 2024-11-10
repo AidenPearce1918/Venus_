@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Themed Loading Page</title>
+    <style>
+        /* Reset margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set the background color and style */
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Container for the loading screen */
+        .loading-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* Star animation */
+        .stars {
+            width: 100%;
+            height: 100%;
+            background: url('https://assets.codepen.io/605876/star-field.png') repeat;
+            background-size: cover;
+            position: absolute;
+            z-index: 1;
+            animation: star-animation 100s linear infinite;
+        }
+
+        /* Floating planet */
+        .planet {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 50% 50%, #b0bec5, #455a64);
+            border-radius: 50%;
+            position: relative;
+            animation: planet-float 5s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        /* "Get Started" button */
+        .get-started {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background: #03a9f4;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            z-index: 2;
+        }
+
+        .get-started:hover {
+            background: #0288d1;
+        }
+
+        /* Animations */
+        @keyframes star-animation {
+            from { transform: translateY(0); }
+            to { transform: translateY(-1000px); }
+        }
+
+        @keyframes planet-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    
+    <div class="loading-container">
+        <div class="planet"></div>
+        <h1>Welcome to the Space</h1>
+        <p>Your journey begins here</p>
+        <button class="get-started" onclick="startJourney()">Get Started</button>
+    </div>
+
+    <script>
+        function startJourney() {
+            alert('Starting your space adventure!');
+            // Redirect to another page or load content here if needed
+        }
+    </script>
+
+</body>
+</html>
