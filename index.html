@@ -70,26 +70,52 @@
             animation-duration: 7s;
         }
 
+        /* Satellite (represented by a small circle with a rectangle) */
         .satellite {
-            width: 60px;
-            height: 60px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Satellite_icon.svg/1200px-Satellite_icon.svg.png') no-repeat center/contain;
             position: absolute;
             top: 70%;
             left: 10%;
-            animation: orbit 8s linear infinite;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            animation: orbit 8s linear infinite;
         }
 
+        .satellite-body {
+            width: 20px;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 50%;
+        }
+
+        .satellite-panel {
+            width: 40px;
+            height: 5px;
+            background-color: #666;
+            margin-left: 5px;
+        }
+
+        /* Astronaut (represented by a larger circle with a smaller helmet circle) */
         .astronaut {
-            width: 80px;
-            height: 80px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/6/6a/Astronaut_icon.png') no-repeat center/contain;
             position: absolute;
             bottom: 15%;
             right: 15%;
-            animation: float 4s ease-in-out infinite;
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
             z-index: 2;
+            animation: float 4s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .helmet {
+            width: 20px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 50%;
         }
 
         /* "Get Started" button */
@@ -135,8 +161,17 @@
         <!-- Space Elements -->
         <div class="planet planet1"></div>
         <div class="planet planet2"></div>
-        <div class="satellite"></div>
-        <div class="astronaut"></div>
+
+        <!-- Satellite element -->
+        <div class="satellite">
+            <div class="satellite-body"></div>
+            <div class="satellite-panel"></div>
+        </div>
+
+        <!-- Astronaut element -->
+        <div class="astronaut">
+            <div class="helmet"></div>
+        </div>
 
         <!-- Loading Text and Button -->
         <h1>Welcome to the Cosmos</h1>
